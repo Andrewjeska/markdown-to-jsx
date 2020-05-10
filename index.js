@@ -111,8 +111,8 @@ const CODE_BLOCK_R = /^(?: {4}[^\n]+\n*)+(?:\n *)+\n?/;
 const CODE_INLINE_R = /^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/;
 const CONSECUTIVE_NEWLINE_R = /^(?:\n *)*\n/;
 const CR_NEWLINE_R = /\r\n?/g;
-const FOOTNOTE_R = /^\[\^([0-9]*)\](:.*)\n/;
-const FOOTNOTE_REFERENCE_R = /^\[\^([0-9]*)\]/;
+const FOOTNOTE_R = /^\[\^([0-9]+)\](:.*)\n/;
+const FOOTNOTE_REFERENCE_R = /^\[\^([0-9]+)\]/;
 const FORMFEED_R = /\f/g;
 const GFM_TASK_R = /^\s*?\[(x|\s)\]/;
 const HEADING_R = /^ *(#{1,6}) *([^\n]+)\n{0,2}/;
@@ -962,7 +962,7 @@ export function compiler(markdown, options) {
 
     footnoteReference: {
       match: inlineRegex(FOOTNOTE_REFERENCE_R),
-      order: PARSE_PRIORITY_HIGH,
+      order: PARSE_PRIORITY_MAX,
       parse(capture /*, parse*/) {
         return {
           content: capture[1],
