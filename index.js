@@ -972,7 +972,7 @@ export function compiler(markdown, options) {
       react(node, output, state) {
         return (
           <a key={state.key} href={sanitizeUrl(node.target)}>
-            <sup key={state.key}>{node.content}+ ' '</sup>
+            <sup key={state.key}>{node.content} </sup>
           </a>
         );
       },
